@@ -48,6 +48,7 @@
 </html>
 <?php
 	if(isset($_POST["bideojokoa"])){
+		//daturen bat falta
 			if(!$_POST['bideojokoa']){
 				echo("<script> alert('Bideojoko atala bete behar da.');</script>");
 				exit();
@@ -60,6 +61,7 @@
 				echo("<script> alert('Urtea atala bete behar da.');</script>");
 				exit();
 			}
+			//konexioa ezarri
 			$konexioa = @mysqli_connect($zerbitzaria, $erabiltzailea, $gakoa, $db) or die ("<p>Errorea: ezin izan da konexioa ezarri</p>");
 			
 			$query = 'SELECT bideojokoa FROM bideojokoak';
@@ -68,6 +70,7 @@
 				echo("<script> alert('Errorea: ezin izan da datu basea atzitu');</script>");
 				exit();
 			}
+			//konexioa ondo joan da
 			else{
 				foreach ($konexioa->query('SELECT bideojokoa FROM bideojokoak') as $row){
 					if (!(strcmp($row['bideojokoa'],$_POST["bideojokoa"]))){
@@ -76,6 +79,7 @@
 					}		
 				}
 			}
+			//bideojokoaren izena db-an sartu eta like eta dislike kontagailuak 0-ra ezarri
 			$sql = "INSERT INTO bideojokoak (bideojokoa, likes, dislikes) VALUES('$_POST[bideojokoa]' , '0', '0')";
 			
 			$ema=@mysqli_query($konexioa,$sql);
@@ -84,6 +88,7 @@
 				echo("<script> alert('Errorea: ezin izan da bideojokoa gehitu.');</script>");
 			}
 			else{
+				//games.xml-an beste datuak gorde
 				$asmentitems = simplexml_load_file("../xml/Games.xml");
 				$item = $asmentitems->addChild('assessmentItem');
 				$item->addAttribute('bideojoko',$_POST['bideojokoa']);

@@ -31,6 +31,7 @@
         <div class="container my-auto">
             <div class="table-responsive">
 				<?php
+					//bideojokoen datuak kargatu eta beraien izenak taula batean ezarri
 					$konexioa = @mysqli_connect($zerbitzaria, $erabiltzailea, $gakoa, $db) or die ("<script> alert('Errorea: ezin izan da konexioa ezarri');</script>");
 					$query = 'SELECT bideojokoa FROM bideojokoak';
 					$ema=@mysqli_query($konexioa,$query);
@@ -49,7 +50,7 @@
 						<td>Dislike</td>
 					</tr>
 					</thead>
-                   	<?php $bid=0; foreach ($konexioa->query('SELECT DISTINCT bideojokoa FROM bideojokoak') as $row){ $bid=$bid+1; ?>
+                   	<?php $bid=0; foreach ($konexioa->query('SELECT DISTINCT bideojokoa FROM bideojokoak') as $row){ $bid=$bid+1; //bideojokoen izenak jarri eta row baterako zenbaki bat ezarri jakiteko ze botoi sakatzen duzun?>
 						<tr>
 							<td><span id=<?php echo $bid;?>><?php echo $row['bideojokoa']?></span></td>
 							<td><input id=<?php echo "g".$bid;?> type="button" value="Like" onclick="like(document.getElementById(<?php echo $bid;?>).innerHTML);"></input></td>
@@ -71,7 +72,7 @@
 	<script>
 
     function like(b){
-		
+		//hartutako datuak, hau da, bideojokoaren izena form-data batean gorde eta php batera bidali non like kontagailua +1 egingo duen
 		var formData = new FormData();
 		formData.append('bideojoko', b);
 	
@@ -84,6 +85,7 @@
 				contentType:false,
 				cache:false,
                 success:  function (d) { 
+				//ondo gauzatuz gero alert bat eman adieraziz
                     alert("Like ondo eman da.");
                 },
 				error: function(){
@@ -95,7 +97,7 @@
 
 	
 	function dislike(b){
-
+		//hartutako datuak, hau da, bideojokoaren izena form-data batean gorde eta php batera bidali non dislike kontagailua +1 egingo duen
 		var formData = new FormData();
 		formData.append('bideojoko', b);
 		

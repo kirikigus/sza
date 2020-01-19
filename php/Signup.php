@@ -46,7 +46,9 @@
     <script src="../js/script.min.js"></script>
 	<script>
 			$(document).ready(function(){
+				//botoia desaktibatu
 				$(':input[type="submit"]').prop('disabled', true);
+				//pasahitzen inputak kanpoan klikatuz gero funtzioari deitu
 				$("#pasahitza1").focusout(function(){
 					botoia();
 				});
@@ -59,6 +61,7 @@
 	<script>
 
 	function botoia(){
+		//bi pasahitzak berdinak izanez gero botoia aktibatu, bestela desaktibatu
 		var pas1=document.getElementById('pasahitza1').value;
 		var pas2=document.getElementById('pasahitza2').value;
 
@@ -81,7 +84,7 @@
 <?php
 
  if(isset($_POST['eposta'])){
-	 
+			//datu bat faltaz gero bakarrik alert bat eman eta ez egin ezer
 			if(!$_POST['eposta']){
 				echo("<script> alert('Email atala bete behar da.');</script>");
 				exit();
@@ -98,7 +101,7 @@
 				echo("<script> alert('Pasahitzak ez dira berdinak.');</script>");
 				exit();
 			}
-		
+			//konexioa ezarri
 			$konexioa = @mysqli_connect($zerbitzaria, $erabiltzailea, $gakoa, $db) or die ("<p>Errorea: ezin izan da konexioa ezarri</p>");
 			
 			$query = 'SELECT email FROM users';
@@ -107,14 +110,18 @@
 				echo("<script> alert('Errorea: ezin izan da datu basea atzitu');</script>");
 				exit();
 			}
+			//konexio ondo joan da
 			else{
+		
 				foreach ($konexioa->query('SELECT email FROM users') as $row){
+					//korreoa jadanik errigistratuta badago ez sartu berriz eta alert bat eman
 					if (!(strcmp($row['email'],$_POST["eposta"]))){
 						echo("<script> alert('Korreoa erregistratuta dago');</script>");
 						exit();
 					}		
 				}
 			}
+			//korreoa db-an sartu
 			$sql = "INSERT INTO users (email, pass, deiturak) VALUES('$_POST[eposta]' , '$_POST[pasahitza1]', '$_POST[deiturak]')";
 			
 			$ema=@mysqli_query($konexioa,$sql);

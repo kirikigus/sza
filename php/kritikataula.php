@@ -31,6 +31,7 @@
         <div class="container my-auto">
             <div class="table-responsive">
 				<?php
+					//konexioa ezarri eta bideojokoen taula kargatu beraien like eta dislike-kin
 					$konexioa = @mysqli_connect($zerbitzaria, $erabiltzailea, $gakoa, $db) or die ("<script> alert('Errorea: ezin izan da konexioa ezarri');</script>");
 					$query = 'SELECT bideojokoa FROM bideojokoak';
 					$ema=@mysqli_query($konexioa,$query);

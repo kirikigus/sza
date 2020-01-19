@@ -46,7 +46,7 @@
 <?php include '../php/DbConfig.php' ?>
 </html>
 <?php	
-		
+		//datuak jaso
 		if(isset($_POST["eposta"])){
 			if(!$_POST['eposta']){
 				echo("<script> alert('Email atala bete behar da.');</script>");
@@ -56,6 +56,7 @@
 				echo("<script> alert('Pasahitza atala bete behar da.');</script>");
 				exit();
 			}
+		//db konexioa ezarri
 			$konexioa = @mysqli_connect($zerbitzaria, $erabiltzailea, $gakoa, $db) or die ("<script> alert('Errorea: ezin izan da konexioa ezarri');</script>");
 			
 			$query = 'SELECT email, pass FROM users';
@@ -64,9 +65,11 @@
 				echo("<script> alert('Errorea: ezin izan da datu basea atzitu');</script>");
 				exit();
 			}
+			//konexioa ondo joan da
 			else{
+				//datu baseko datu guztietarako
 				foreach ($konexioa->query('SELECT email, pass FROM users') as $row){
-
+					//emaila eta pasahitzak berdinak badira login egin logeatuentzako orrira bideratuz
 					if (!(strcmp($row['email'],$_POST["eposta"]))) {
 
 						if(!(strcmp($row['pass'],$_POST["pasahitza"]))){ 

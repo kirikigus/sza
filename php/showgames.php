@@ -39,7 +39,9 @@
 						<td>Urtea</td>
 					</tr>
 					</thead>
+					
                    	<?php
+					//xml-ko datuak taula moduan aurkeztea 
 						$irteera="";
 						sleep(2);
 						$assessmentItems=simplexml_load_file('../xml/Games.xml');

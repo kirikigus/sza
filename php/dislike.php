@@ -1,6 +1,7 @@
 <?php include '../php/DbConfig.php' ?>
 <?php			
 if(isset($_POST['bideojoko'])){
+	//bideojokoaren dislike kontagailua update egin
 		$bideojoko=$_POST["bideojoko"];
 		$konexioa = @mysqli_connect($zerbitzaria, $erabiltzailea, $gakoa, $db) or die ("<p>Errorea: ezin izan da konexioa ezarri</p>");
 		$sql = 'SELECT * FROM bideojokoak WHERE bideojokoa="$bideojoko"';
