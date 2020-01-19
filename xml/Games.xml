@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<assessmentItems>
+	<assessmentItem bideojoko="Minecraft">
+		<egileak> 
+			<p>Mojang</p>
+		</egileak>
+		<urtea>
+			<p>2009</p>
+		</urtea>
+	</assessmentItem>
+	<assessmentItem bideojoko="Sea of thieves">
+		<egileak> 
+			<p>Rare</p>
+		</egileak>
+		<urtea>
+			<p>2018</p>
+		</urtea>
+	</assessmentItem>
+	<assessmentItem bideojoko="League of Legends">
+		<egileak>
+			<p>Riot</p>
+		</egileak>
+		<urtea>
+			<p>2012</p>
+		</urtea>
+	</assessmentItem>
+</assessmentItems>
